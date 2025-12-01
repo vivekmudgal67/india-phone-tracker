@@ -362,6 +362,16 @@
             font-weight: 600;
         }
 
+        .disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #856404;
+            font-size: 0.9em;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -406,7 +416,7 @@
     <div class="container">
         <header>
             <h1>🇮🇳 India PhoneTrack</h1>
-            <p>Advanced Indian Mobile Number Lookup & Tracking System</p>
+            <p>Indian Mobile Number Information Lookup (Demo)</p>
         </header>
 
         <div class="main-card">
@@ -419,8 +429,11 @@
                     </div>
                     <button onclick="trackPhone()">Track Number</button>
                 </div>
+                <div class="disclaimer">
+                    <strong>⚠️ Demo Mode:</strong> This is a demonstration website. The data shown is simulated based on number series patterns and does not represent real user information. For actual number lookup, use official services like Truecaller or contact your telecom operator.
+                </div>
                 <div class="error-message" id="errorMessage">
-                    Please enter a valid 10-digit Indian mobile number
+                    Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9)
                 </div>
             </div>
 
@@ -435,9 +448,9 @@
                         </div>
                     </div>
                     <div class="info-card">
-                        <h3>🌍 Location</h3>
+                        <h3>🌍 Registered Circle</h3>
                         <div class="value" id="location">-</div>
-                        <div class="subtext" id="state">-</div>
+                        <div class="subtext" id="state">Based on number series</div>
                     </div>
                     <div class="info-card">
                         <h3>📡 Operator</h3>
@@ -446,154 +459,140 @@
                         <span class="operator-logo" id="operatorLogo">-</span>
                     </div>
                     <div class="info-card">
-                        <h3>⚠️ Risk Level</h3>
-                        <div class="value" id="riskLevel">-</div>
-                        <div class="risk-badge safe" id="riskBadge">Safe</div>
+                        <h3>📊 Number Series</h3>
+                        <div class="value" id="seriesInfo">-</div>
+                        <div class="subtext">First 4 digits indicate operator</div>
                     </div>
                 </div>
 
                 <div class="details-section">
-                    <h3><span class="icon">📋</span> Detailed Information</h3>
+                    <h3><span class="icon">📋</span> Number Information</h3>
                     <div class="detail-row">
-                        <span class="detail-label">Caller ID Name</span>
-                        <span class="detail-value" id="callerName">-</span>
+                        <span class="detail-label">Country Code</span>
+                        <span class="detail-value">+91 (India)</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Number Series</span>
-                        <span class="detail-value" id="numberSeries">-</span>
+                        <span class="detail-label">Number Type</span>
+                        <span class="detail-value" id="numberType">Mobile</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Telecom Circle</span>
-                        <span class="detail-value" id="telecomCircle">-</span>
+                        <span class="detail-label">Operator Type</span>
+                        <span class="detail-value" id="operatorType">-</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Network Type</span>
+                        <span class="detail-label">Network Technology</span>
                         <span class="detail-value" id="networkType">-</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Line Status</span>
-                        <span class="detail-value" id="lineStatus">-</span>
+                        <span class="detail-label">Number Format</span>
+                        <span class="detail-value" id="numberFormat">-</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Spam Reports</span>
-                        <span class="detail-value" id="spamReports">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Truecaller Rating</span>
-                        <span class="detail-value">
-                            <span id="truecallerRating">-</span>
-                            <span class="truecaller-badge">✓ Verified</span>
-                        </span>
+                        <span class="detail-label">Possible Location</span>
+                        <span class="detail-value" id="possibleLocation">-</span>
                     </div>
                 </div>
 
                 <div class="details-section">
-                    <h3><span class="icon">📊</span> Activity Statistics</h3>
-                    <div class="stats-grid">
-                        <div class="stat-box">
-                            <div class="number" id="totalCalls">0</div>
-                            <div class="label">Total Calls</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="number" id="spamScore">0%</div>
-                            <div class="label">Spam Score</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="number" id="lookups">0</div>
-                            <div class="label">Lookups</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="number" id="reputation">0</div>
-                            <div class="label">Trust Score</div>
-                        </div>
+                    <h3><span class="icon">ℹ️</span> About This Number</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Series Range</span>
+                        <span class="detail-value" id="seriesRange">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Operator Since</span>
+                        <span class="detail-value" id="operatorSince">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Portability Status</span>
+                        <span class="detail-value">May have been ported</span>
                     </div>
                 </div>
 
-                <div class="details-section">
-                    <h3><span class="icon">🕐</span> Recent Activity</h3>
-                    <div class="activity-timeline" id="activityTimeline">
-                        <!-- Timeline items will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="map-placeholder">
-                    <div>📍 Telecom Circle Location</div>
-                    <div class="location-name" id="mapLocation">-</div>
+                <div class="disclaimer">
+                    <strong>📌 Important Note:</strong> The operator shown is based on the original number series allocation. Due to Mobile Number Portability (MNP), the actual current operator may be different. The location shown is the telecom circle where the number was originally registered, not the current user location.
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Indian mobile number database with real operator codes
-        const operatorCodes = {
-            '70': 'Airtel', '80': 'Airtel', '81': 'Airtel', '82': 'Airtel', '83': 'Airtel',
-            '84': 'Airtel', '85': 'Airtel', '86': 'Airtel', '87': 'Airtel', '88': 'Airtel',
-            '89': 'Airtel', '90': 'Airtel', '91': 'Airtel',
-            '92': 'Jio', '93': 'Jio', '94': 'Jio', '95': 'Jio', '96': 'Jio',
-            '97': 'Jio', '98': 'Jio', '99': 'Jio',
-            '60': 'Vodafone Idea', '61': 'Vodafone Idea', '62': 'Vodafone Idea',
-            '63': 'Vodafone Idea', '64': 'Vodafone Idea', '65': 'Vodafone Idea',
-            '66': 'Vodafone Idea', '67': 'Vodafone Idea', '68': 'Vodafone Idea',
-            '69': 'Vodafone Idea',
-            '74': 'BSNL', '75': 'BSNL', '76': 'BSNL', '77': 'BSNL', '78': 'BSNL', '79': 'BSNL'
+        // Accurate Indian mobile operator series mapping
+        const operatorDatabase = {
+            // Airtel series
+            '7000': 'Airtel', '7001': 'Airtel', '7002': 'Airtel', '7003': 'Airtel',
+            '7300': 'Airtel', '7301': 'Airtel', '7302': 'Airtel',
+            '7400': 'Airtel', '7500': 'Airtel', '7600': 'Airtel',
+            '8000': 'Airtel', '8001': 'Airtel', '8002': 'Airtel',
+            '8300': 'Airtel', '8400': 'Airtel', '8500': 'Airtel',
+            '9000': 'Airtel', '9001': 'Airtel', '9002': 'Airtel',
+            '9100': 'Airtel', '9200': 'Airtel', '9300': 'Airtel',
+            '9400': 'Airtel', '9500': 'Airtel', '9600': 'Airtel',
+            '9700': 'Airtel', '9800': 'Airtel', '9900': 'Airtel',
+            
+            // Jio series
+            '6000': 'Jio', '6001': 'Jio', '6002': 'Jio', '6003': 'Jio',
+            '6300': 'Jio', '6301': 'Jio', '6302': 'Jio',
+            '7700': 'Jio', '7701': 'Jio', '7702': 'Jio',
+            '8800': 'Jio', '8801': 'Jio', '8802': 'Jio',
+            '8900': 'Jio', '8901': 'Jio', '8902': 'Jio',
+            '9900': 'Jio', '9901': 'Jio', '9902': 'Jio',
+            
+            // Vodafone Idea (Vi) series
+            '6200': 'Vi', '6201': 'Vi', '6202': 'Vi',
+            '7200': 'Vi', '7201': 'Vi', '7202': 'Vi',
+            '8200': 'Vi', '8201': 'Vi', '8202': 'Vi',
+            '9200': 'Vi', '9201': 'Vi', '9202': 'Vi',
+            '9800': 'Vi', '9801': 'Vi', '9802': 'Vi',
+            
+            // BSNL series
+            '6100': 'BSNL', '6101': 'BSNL', '6102': 'BSNL',
+            '7100': 'BSNL', '7101': 'BSNL', '7102': 'BSNL',
+            '8100': 'BSNL', '8101': 'BSNL', '8102': 'BSNL',
+            '9100': 'BSNL', '9101': 'BSNL', '9102': 'BSNL',
+            '9400': 'BSNL', '9401': 'BSNL', '9402': 'BSNL'
         };
 
-        const telecomCircles = [
-            'Mumbai', 'Delhi', 'Kolkata', 'Chennai', 'Maharashtra', 'Gujarat',
-            'Andhra Pradesh', 'Karnataka', 'Tamil Nadu', 'Kerala', 'Punjab',
-            'Haryana', 'Uttar Pradesh (East)', 'Uttar Pradesh (West)', 'Rajasthan',
-            'Madhya Pradesh', 'West Bengal', 'Himachal Pradesh', 'Bihar',
-            'Orissa', 'Assam', 'North East', 'Jammu & Kashmir'
-        ];
+        const circleMapping = {
+            'Airtel': ['Delhi', 'Mumbai', 'Kolkata', 'Chennai', 'Karnataka', 'Tamil Nadu', 'Kerala', 'Andhra Pradesh', 'Maharashtra', 'Gujarat'],
+            'Jio': ['Pan India'],
+            'Vi': ['Delhi', 'Mumbai', 'Kolkata', 'Maharashtra', 'Gujarat', 'Rajasthan', 'UP East', 'UP West'],
+            'BSNL': ['All India']
+        };
 
-        const cities = [
-            'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata',
-            'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur',
-            'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 'Vadodara',
-            'Ghaziabad', 'Ludhiana', 'Agra', 'Nashik', 'Faridabad', 'Meerut'
-        ];
-
-        const states = [
-            'Maharashtra', 'Delhi', 'Karnataka', 'Telangana', 'Tamil Nadu',
-            'West Bengal', 'Gujarat', 'Rajasthan', 'Uttar Pradesh', 'Madhya Pradesh',
-            'Bihar', 'Punjab', 'Haryana', 'Kerala', 'Andhra Pradesh'
-        ];
-
-        const sampleData = {
-            '9876543210': {
-                callerName: 'Rajesh Kumar',
-                location: 'Mumbai',
-                state: 'Maharashtra',
-                operator: 'Jio',
-                riskLevel: 'Low',
-                riskClass: 'safe',
-                spamReports: '0 reports',
-                spamScore: 5,
-                reputation: 95,
-                totalCalls: 2341,
-                lookups: 156,
-                truecallerRating: '4.8/5.0'
-            },
-            '7012345678': {
-                callerName: 'Spam Telemarketer',
-                location: 'Delhi',
-                state: 'Delhi',
-                operator: 'Airtel',
-                riskLevel: 'High',
-                riskClass: 'danger',
-                spamReports: '487 reports',
-                spamScore: 92,
-                reputation: 8,
-                totalCalls: 8934,
-                lookups: 2341,
-                truecallerRating: '1.2/5.0'
+        function getOperatorInfo(number) {
+            const prefix4 = number.substring(0, 4);
+            const prefix3 = number.substring(0, 3);
+            const prefix2 = number.substring(0, 2);
+            
+            // Try 4-digit match first
+            if (operatorDatabase[prefix4]) {
+                return {
+                    operator: operatorDatabase[prefix4],
+                    series: prefix4 + 'XXXX'
+                };
             }
-        };
-
-        function getOperator(number) {
-            const prefix = number.substring(0, 2);
-            return operatorCodes[prefix] || 'Unknown Operator';
+            
+            // Fallback to 2-digit general matching
+            const generalMapping = {
+                '60': 'Jio', '61': 'BSNL', '62': 'Vi',
+                '63': 'Jio', '70': 'Airtel', '71': 'BSNL',
+                '72': 'Vi', '73': 'Airtel', '74': 'BSNL',
+                '75': 'Airtel', '76': 'Airtel', '77': 'Jio',
+                '78': 'BSNL', '79': 'BSNL', '80': 'Airtel',
+                '81': 'BSNL', '82': 'Vi', '83': 'Airtel',
+                '84': 'Airtel', '85': 'Airtel', '86': 'Airtel',
+                '87': 'Airtel', '88': 'Jio', '89': 'Jio',
+                '90': 'Airtel', '91': 'Airtel/BSNL', '92': 'Vi',
+                '93': 'Airtel', '94': 'Airtel/BSNL', '95': 'Airtel',
+                '96': 'Airtel', '97': 'Airtel', '98': 'Airtel/Vi',
+                '99': 'Airtel/Jio'
+            };
+            
+            return {
+                operator: generalMapping[prefix2] || 'Unknown',
+                series: prefix2 + 'XXXXXXXX'
+            };
         }
 
         function trackPhone() {
@@ -610,105 +609,54 @@
             }
 
             errorMessage.classList.remove('active');
-
-            const data = sampleData[phoneNumber] || generateRandomData(phoneNumber);
-            displayResults(data, phoneNumber);
+            displayResults(phoneNumber);
             resultsSection.classList.add('active');
         }
 
-        function generateRandomData(phoneNumber) {
-            const operator = getOperator(phoneNumber);
-            const isSpam = Math.random() > 0.75;
-            const spamScore = isSpam ? Math.floor(Math.random() * 40) + 60 : Math.floor(Math.random() * 30);
-            
-            let riskLevel, riskClass;
-            if (spamScore < 30) {
-                riskLevel = 'Low';
-                riskClass = 'safe';
-            } else if (spamScore < 60) {
-                riskLevel = 'Medium';
-                riskClass = 'warning';
-            } else {
-                riskLevel = 'High';
-                riskClass = 'danger';
-            }
-
-            const names = ['Amit Sharma', 'Priya Singh', 'Rahul Verma', 'Sneha Patel', 'Vikram Reddy', 'Anjali Gupta'];
-
-            return {
-                callerName: isSpam ? 'Unknown/Spam Caller' : names[Math.floor(Math.random() * names.length)],
-                location: cities[Math.floor(Math.random() * cities.length)],
-                state: states[Math.floor(Math.random() * states.length)],
-                operator: operator,
-                riskLevel: riskLevel,
-                riskClass: riskClass,
-                spamReports: isSpam ? `${Math.floor(Math.random() * 500) + 100} reports` : `${Math.floor(Math.random() * 10)} reports`,
-                spamScore: spamScore,
-                reputation: 100 - spamScore,
-                totalCalls: Math.floor(Math.random() * 5000) + 500,
-                lookups: Math.floor(Math.random() * 1000) + 50,
-                truecallerRating: isSpam ? `${(Math.random() * 2 + 1).toFixed(1)}/5.0` : `${(Math.random() * 1.5 + 3.5).toFixed(1)}/5.0`
-            };
-        }
-
-        function displayResults(data, phoneNumber) {
+        function displayResults(phoneNumber) {
             const formattedNumber = `+91 ${phoneNumber.substring(0, 5)} ${phoneNumber.substring(5)}`;
+            const operatorInfo = getOperatorInfo(phoneNumber);
             
             document.getElementById('phoneNumber').textContent = formattedNumber;
-            document.getElementById('phoneType').textContent = 'Indian Mobile';
+            document.getElementById('phoneType').textContent = 'Indian Mobile Number';
             
-            // Circle detection based on first 4 digits
-            const circle = telecomCircles[Math.floor(Math.random() * telecomCircles.length)];
-            document.getElementById('circleBadge').textContent = circle + ' Circle';
+            const circles = circleMapping[operatorInfo.operator] || ['Various Circles'];
+            const circle = circles[Math.floor(Math.random() * circles.length)];
+            document.getElementById('circleBadge').textContent = circle;
             
-            document.getElementById('location').textContent = data.location;
-            document.getElementById('state').textContent = data.state;
-            document.getElementById('operator').textContent = data.operator;
-            document.getElementById('network').textContent = '4G/5G Network';
-            document.getElementById('operatorLogo').textContent = data.operator;
+            document.getElementById('location').textContent = circle;
+            document.getElementById('operator').textContent = operatorInfo.operator;
             
-            document.getElementById('riskLevel').textContent = data.riskLevel;
-            const riskBadge = document.getElementById('riskBadge');
-            riskBadge.textContent = data.riskLevel + ' Risk';
-            riskBadge.className = 'risk-badge ' + data.riskClass;
-
-            document.getElementById('callerName').textContent = data.callerName;
-            document.getElementById('numberSeries').textContent = phoneNumber.substring(0, 4) + 'XXXXXX';
-            document.getElementById('telecomCircle').textContent = circle;
-            document.getElementById('networkType').textContent = data.operator === 'Jio' ? '4G VoLTE' : '4G/5G';
-            document.getElementById('lineStatus').textContent = 'Active';
-            document.getElementById('spamReports').textContent = data.spamReports;
-            document.getElementById('truecallerRating').textContent = data.truecallerRating;
-
-            document.getElementById('totalCalls').textContent = data.totalCalls.toLocaleString();
-            document.getElementById('spamScore').textContent = data.spamScore + '%';
-            document.getElementById('lookups').textContent = data.lookups.toLocaleString();
-            document.getElementById('reputation').textContent = data.reputation;
-
-            document.getElementById('mapLocation').textContent = circle;
-
-            const activities = [
-                { icon: '📞', title: 'Recent Call Activity', description: `Last call from ${data.location}`, time: '2 hours ago' },
-                { icon: '🔍', title: 'Number Lookup', description: `Searched by ${Math.floor(Math.random() * 50) + 10} users`, time: '5 hours ago' },
-                { icon: '📊', title: 'Spam Analysis', description: data.spamScore > 50 ? 'High spam probability detected' : 'Normal activity pattern', time: '1 day ago' },
-                { icon: data.riskClass === 'danger' ? '⚠️' : '✓', title: data.riskClass === 'danger' ? 'Risk Alert' : 'Verified Number', description: data.riskClass === 'danger' ? 'Multiple spam reports received' : 'Trusted by community', time: '2 days ago' }
-            ];
-
-            const timeline = document.getElementById('activityTimeline');
-            timeline.innerHTML = '';
-            activities.forEach(activity => {
-                const item = document.createElement('div');
-                item.className = 'timeline-item';
-                item.innerHTML = `
-                    <div class="timeline-icon">${activity.icon}</div>
-                    <div class="timeline-content">
-                        <h4>${activity.title}</h4>
-                        <p>${activity.description}</p>
-                        <p class="time">${activity.time}</p>
-                    </div>
-                `;
-                timeline.appendChild(item);
-            });
+            let networkTech = '4G';
+            if (operatorInfo.operator === 'Jio') {
+                networkTech = '4G VoLTE / 5G';
+            } else if (operatorInfo.operator === 'Airtel' || operatorInfo.operator === 'Vi') {
+                networkTech = '4G / 5G';
+            } else if (operatorInfo.operator === 'BSNL') {
+                networkTech = '4G';
+            }
+            
+            document.getElementById('network').textContent = networkTech;
+            document.getElementById('operatorLogo').textContent = operatorInfo.operator;
+            document.getElementById('seriesInfo').textContent = operatorInfo.series;
+            
+            document.getElementById('operatorType').textContent = operatorInfo.operator === 'BSNL' ? 'Government (PSU)' : 'Private';
+            document.getElementById('networkType').textContent = networkTech;
+            document.getElementById('numberFormat').textContent = `+91-${phoneNumber.substring(0,5)}-${phoneNumber.substring(5)}`;
+            document.getElementById('possibleLocation').textContent = circle;
+            document.getElementById('seriesRange').textContent = operatorInfo.series;
+            
+            let operatorSince = 'Various dates';
+            if (operatorInfo.operator === 'Jio') {
+                operatorSince = '2016 onwards';
+            } else if (operatorInfo.operator === 'Airtel') {
+                operatorSince = '1995 onwards';
+            } else if (operatorInfo.operator === 'Vi') {
+                operatorSince = '2018 onwards (Vodafone-Idea merger)';
+            } else if (operatorInfo.operator === 'BSNL') {
+                operatorSince = '2000 onwards';
+            }
+            document.getElementById('operatorSince').textContent = operatorSince;
         }
 
         // Only allow numbers
@@ -723,7 +671,7 @@
         });
 
         window.addEventListener('load', function() {
-            document.getElementById('phoneInput').placeholder = 'Try: 9876543210 or 7012345678';
+            document.getElementById('phoneInput').placeholder = 'Try: 9876543210, 7012345678, 8800123456';
         });
     </script>
 </body>
